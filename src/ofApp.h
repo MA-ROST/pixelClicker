@@ -1,7 +1,11 @@
 #pragma once
 
+#include "grid.h"
 #include "ofMain.h"
 
+/**
+ * - initialize at a specific size
+ */
 class ofApp : public ofBaseApp{
 
 	public:
@@ -20,5 +24,12 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		const string TITLE = "Pixel Clicker";
+
+		array<array<Grid, Grid::GRID_SIZE>, Grid::GRID_SIZE> grid;
+
+		const int SCREEN_SIZE = Grid::calculateScreenSize();
+		Point<int> screenSize = { 600, 600 };
 		
 };

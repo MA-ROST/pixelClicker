@@ -2,7 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetBackgroundColor(ofColor::white);
+    ofSetWindowTitle(TITLE); // Set the window title
+    ofSetWindowShape(SCREEN_SIZE, SCREEN_SIZE);
 
+    //Grid::calculatePixelSize();
 }
 
 //--------------------------------------------------------------
@@ -12,7 +16,11 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+    for (int x = 0; x < Grid::GRID_SIZE; ++x) {
+        for (int y = 0; y < Grid::GRID_SIZE; ++y) {
+            grid[x][y].setupDrawing(x, y, { ofColor::gray }, false);
+        }
+    }
 }
 
 //--------------------------------------------------------------

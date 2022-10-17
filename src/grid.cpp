@@ -37,6 +37,6 @@ int Grid::calculateScreenSize()
 
 void calculatePixelSize()
 {
-	Grid::pixelSize.x = ofGetWidth() / Grid::grid_size.x;
-	Grid::pixelSize.y = ofGetHeight() / Grid::grid_size.y;
+	Grid::pixelSize.x = ofGetWidth() / Grid::gridSize.x;
+	Grid::pixelSize.y = ofGetHeight() / Grid::gridSize.y;
 }

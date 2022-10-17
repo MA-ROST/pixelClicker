@@ -5,19 +5,30 @@
 #include "point.h"
 
 /**
+ * point<int> grid_size {x, y} - the count of rows and columns
+ * bool isFilled - if the pixel is currently clicked or not (black or white)
+ *
+ * void drawRectangle(const int& x, const int& y, const int& w, const int& h);
+ * void setFilled();
+ *	- runs on click
+ * void setPixelSize()
+ *	- get window height and width
+ *	- divide by the row and column count
+ *	- apply the new sizes to each pixel (redraw)
+ *	- applied on start and resize
+ */
+
+/**
  * @breif creates a grid and its incidences
  */
 class Grid
 {
 	static constexpr int PIXEL_SIZE{ 60 };
-
-	Point<int> m_coordinate;
-	ofColor m_drawColor;
-	bool m_isFilled;
+	bool m_isFilled = false;
 public:
 	static Point<int> pixelSize;
 	static constexpr int GRID_SIZE{ 9 };
-	static constexpr Point<int> grid_size{ 9,9 };
+	static constexpr Point<int> gridSize{ 9,9 };
 
 	void setupDrawing(const int& x, const int& y, ofColor color, bool isFilled);
 	/**
