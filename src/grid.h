@@ -18,17 +18,18 @@
  *	- applied on start and resize
  */
 
-/**
- * @breif creates a grid and its incidences
- */
+ /**
+  * @breif creates a grid and its incidences
+  */
 class Grid
 {
-	static constexpr int PIXEL_SIZE{ 60 };
 	bool m_isFilled = false;
 public:
-	static Point<int> pixelSize;
-	static constexpr int GRID_SIZE{ 9 };
+	Point<float> pixelSize;
 	static constexpr Point<int> gridSize{ 9,9 };
+
+	Point<float> calculatePixelSize();
+	void setPixelSize();
 
 	void setupDrawing(const int& x, const int& y, ofColor color, bool isFilled);
 	/**
@@ -65,4 +66,4 @@ public:
  * @bug Generating LNK2001 unresolved external symbol "public: static struct Point<int> Grid::pixelSize" (?pixelSize@Grid@@2U?$Point@H@@A)
  * PixelBatman D:\College\VisualStudio\of_v0.11.2_vs2017_release\apps\myApps\PixelBatman\grid.obj
  */
-static void calculatePixelSize();
+ //static void calculatePixelSize();
