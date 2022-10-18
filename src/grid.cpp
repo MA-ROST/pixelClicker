@@ -16,36 +16,24 @@ void Grid::setPixelSize()
 
 void Grid::setupDrawing(const int& x, const int& y, ofColor color)
 {
-	isInBounds();
+	setState();
 	drawRectangle(x, y);
 	setPixelLocation(x, y);
 }
 
 void Grid::drawRectangle(const int& x, const int& y) const
 {
-	/*ofDrawRectangle(pixelSize.x * x, pixelSize.y * y, pixelSize.x, pixelSize.y);*/
 	ofDrawRectangle(pixelSize.x * x, pixelSize.y * y, pixelSize.x, pixelSize.y);
 }
 
-
-void Grid::setFilled(bool isFilled)
+void Grid::setState ()
 {
-	m_isFilled = isFilled;
-	switch (m_isFilled)
-	{
-	case true:
-		ofFill();
-		ofSetColor(ofColor::black);
-		break;
-	case false:
-		ofNoFill();
-		ofSetColor(ofColor::gray);
-		ofSetLineWidth(1);
-		break;
-	}
+	if ( m_isClicked ) { setState (2); }
+	else if ( isInBounds() && !m_isClicked ) { setState (1); }
+	else { setState (0); }
 }
 
-void Grid::SetState (int state)
+void Grid::setState (int state)
 {
 	ofFill();
 	switch ( state ) {
@@ -53,7 +41,7 @@ void Grid::SetState (int state)
 			break;
 		case 2: ofSetColor (active);
 			break;
-		default:
+		default: 
 			ofNoFill();
 			ofSetColor (inactive);
 			break;
@@ -65,13 +53,17 @@ void Grid::setPixelLocation(const int& x, const int& y)
 	pixelLocation = { pixelSize.x * x , pixelSize.y * y };
 }
 
-void Grid::isInBounds ()
+bool Grid::isInBounds ()
 {
-	if (static_cast<float>(ofGetMouseX()) >= pixelLocation.x && 
-		static_cast<float>(ofGetMouseX()) <= (pixelLocation.x + pixelSize.x) &&
-		static_cast<float>(ofGetMouseY()) >= pixelLocation.y && 
-		static_cast<float>(ofGetMouseY()) <= (pixelLocation.y + pixelSize.y) ) {
-		SetState(1);
+	return static_cast<float>(ofGetMouseX()) >= pixelLocation.x && 
+	       static_cast<float>(ofGetMouseX()) <= pixelLocation.x + pixelSize.x &&
+	       static_cast<float>(ofGetMouseY()) >= pixelLocation.y && 
+	       static_cast<float>(ofGetMouseY()) <= pixelLocation.y + pixelSize.y ? true : false;
+}
+
+void Grid::clickEvent ()
+{
+	if (isInBounds()) {
+		m_isClicked = m_isClicked ? false : true;
 	}
-	else SetState(0);
 }

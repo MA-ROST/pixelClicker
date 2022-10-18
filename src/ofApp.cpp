@@ -45,7 +45,11 @@ void ofApp::mouseDragged(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-
+    for (int x = 0; x < Grid::gridSize.x; ++x) {
+        for (int y = 0; y < Grid::gridSize.y; ++y) {
+            grid[x][y].clickEvent();
+        }
+    }
 }
 
 //--------------------------------------------------------------
