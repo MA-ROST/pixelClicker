@@ -6,6 +6,7 @@ void ofApp::setup() {
     ofSetWindowTitle(TITLE); // Set the window title
     ofSetWindowShape(screenSize.x, screenSize.y);
 
+    //setupGrid();
 }
 
 //--------------------------------------------------------------
@@ -17,7 +18,6 @@ void ofApp::update() {
 void ofApp::draw() {
     for (int x = 0; x < Grid::gridSize.x; ++x) {
         for (int y = 0; y < Grid::gridSize.y; ++y) {
-            grid[x][y].setPixelSize();
             grid[x][y].setupDrawing(x, y, { ofColor::gray });
         }
     }
@@ -81,3 +81,11 @@ void ofApp::gotMessage(ofMessage msg) {
 void ofApp::dragEvent(ofDragInfo dragInfo) {
 
 }
+
+//void ofApp::setupGrid()
+//{
+//    grid.reserve(Grid::gridSize.x);
+//    for (int x = 0; x < Grid::gridSize.x; ++x) {
+//        grid[x].reserve(Grid::gridSize.y);
+//    }
+//}

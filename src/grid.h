@@ -24,7 +24,8 @@
 class Grid
 {
 	bool m_isClicked = false;
-	bool m_inBounds	 = false;
+
+	Point<float> pixelSize, pixelLocation;
 
 	enum stateColor {
 		inactive	= 200,
@@ -33,14 +34,13 @@ class Grid
 	};
 
 public:
-	Point<float> pixelSize;
-	Point<float> pixelLocation;
-	static constexpr Point<int> gridSize{ 9,9 };
-
-	Point<float> calculatePixelSize();
-	void setPixelSize();
+	
+	static constexpr Point<int> gridSize{ 20,20 };
 
 	void setupDrawing(const int& x, const int& y, ofColor color);
+
+	void clickEvent();
+private:
 	/**
 	 * @brief Draws a rectangle based on the given pixel size,
 	 *		using the x & y values for the location
@@ -57,15 +57,13 @@ public:
 	 */
 	void setFilled(bool isFilled);
 
-	void setState();
-	void setState(int state);
+	void setState() const;
+	void setState(int state) const;
 
+	static Point<float> calculatePixelSize();
 	void setPixelLocation(const int& x, const int& y);
 
-	bool isInBounds ();
-
-	void clickEvent();
-
+	bool isInBounds() const;
 };
 
 

@@ -26,10 +26,8 @@ public:
 	void gotMessage(ofMessage msg);
 
 	const string TITLE = "Pixel Clicker";
-
 	array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
-
-	//const int SCREEN_SIZE = Grid::calculateScreenSize();
+	
 	Point<int> screenSize = { 600, 600 };
 
 };
