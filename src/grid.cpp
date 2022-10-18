@@ -1,26 +1,21 @@
 ﻿#include "grid.h"
 
-void Grid::setupDrawing(const int& x, const int& y, ofColor color)
+void Grid::setupPixel(const int& x, const int& y)
 {
 	pixelSize = calculatePixelSize();
 	setState();
-	drawRectangle(x, y);
-	setPixelLocation(x, y);
-}
-
-void Grid::drawRectangle(const int& x, const int& y) const
-{
 	ofDrawRectangle(pixelSize.x * x, pixelSize.y * y, pixelSize.x, pixelSize.y);
+	setPixelLocation(x, y);
 }
 
 void Grid::setState () const
 {
-	if ( m_isClicked ) { setState (2); }
-	else if ( isInBounds() && !m_isClicked ) { setState (1); }
-	else { setState (0); }
+	if ( m_isClicked ) { setStyle (2); }
+	else if ( isInBounds() && !m_isClicked ) { setStyle (1); }
+	else { setStyle (0); }
 }
 
-void Grid::setState (int state) const
+void Grid::setStyle (int state) const
 {
 	ofFill();
 	switch ( state ) {

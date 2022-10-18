@@ -18,7 +18,7 @@ void ofApp::update() {
 void ofApp::draw() {
     for (int x = 0; x < Grid::gridSize.x; ++x) {
         for (int y = 0; y < Grid::gridSize.y; ++y) {
-            grid[x][y].setupDrawing(x, y, { ofColor::gray });
+            grid[x][y].setupPixel(x, y);
         }
     }
 }
