@@ -24,14 +24,16 @@
 class Grid
 {
 	bool m_isFilled = false;
+	bool m_inBounds = false;
 public:
 	Point<float> pixelSize;
+	Point<float> pixelLocation;
 	static constexpr Point<int> gridSize{ 9,9 };
 
 	Point<float> calculatePixelSize();
 	void setPixelSize();
 
-	void setupDrawing(const int& x, const int& y, ofColor color, bool isFilled);
+	void setupDrawing(const int& x, const int& y, ofColor color);
 	/**
 	 * @brief Draws a rectangle based on the given pixel size,
 	 *		using the x & y values for the location
@@ -48,22 +50,10 @@ public:
 	 */
 	void setFilled(bool isFilled);
 
-	/**
-	 * @brief Uses the present Pixel and Grid size to calculate a size for the screen.
-	 * This Function assumes that the rows and columns are equal in length
-	 *
-	 * @return Returns what the size of the screen should be
-	 */
-	static int calculateScreenSize();
+	void setPixelLocation(const int& x, const int& y);
 
+	void isInBounds();
 
 };
 
-/**
- * Using the size of the window and the size of the grid that will be made,
- * the height and width will be calculated for each pixel
- *
- * @bug Generating LNK2001 unresolved external symbol "public: static struct Point<int> Grid::pixelSize" (?pixelSize@Grid@@2U?$Point@H@@A)
- * PixelBatman D:\College\VisualStudio\of_v0.11.2_vs2017_release\apps\myApps\PixelBatman\grid.obj
- */
- //static void calculatePixelSize();
+

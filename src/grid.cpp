@@ -14,10 +14,11 @@ void Grid::setPixelSize()
 	pixelSize = calculatePixelSize();
 }
 
-void Grid::setupDrawing(const int& x, const int& y, ofColor color, bool isFilled)
+void Grid::setupDrawing(const int& x, const int& y, ofColor color)
 {
-	setFilled(isFilled);
+	isInBounds();
 	drawRectangle(x, y);
+	setPixelLocation(x, y);
 }
 
 void Grid::drawRectangle(const int& x, const int& y) const
@@ -42,4 +43,18 @@ void Grid::setFilled(bool isFilled)
 		ofSetLineWidth(1);
 		break;
 	}
+}
+
+void Grid::setPixelLocation(const int& x, const int& y) 
+{
+	pixelLocation = { pixelSize.x * x , pixelSize.y * y };
+}
+
+void Grid::isInBounds ()
+{
+	if (static_cast<float>(ofGetMouseX()) <= (pixelLocation.x + pixelSize.x) && static_cast<float>(ofGetMouseX()) >= pixelLocation.x &&
+		static_cast<float>(ofGetMouseY()) <= (pixelLocation.y + pixelSize.y) && static_cast<float>(ofGetMouseY()) >= pixelLocation.y) {
+		setFilled(true);
+	}
+	else setFilled(false);
 }
