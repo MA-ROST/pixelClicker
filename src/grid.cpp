@@ -45,6 +45,21 @@ void Grid::setFilled(bool isFilled)
 	}
 }
 
+void Grid::SetState (int state)
+{
+	ofFill();
+	switch ( state ) {
+		case 1: ofSetColor (hover);
+			break;
+		case 2: ofSetColor (active);
+			break;
+		default:
+			ofNoFill();
+			ofSetColor (inactive);
+			break;
+	}
+}
+
 void Grid::setPixelLocation(const int& x, const int& y) 
 {
 	pixelLocation = { pixelSize.x * x , pixelSize.y * y };
@@ -52,9 +67,11 @@ void Grid::setPixelLocation(const int& x, const int& y)
 
 void Grid::isInBounds ()
 {
-	if (static_cast<float>(ofGetMouseX()) <= (pixelLocation.x + pixelSize.x) && static_cast<float>(ofGetMouseX()) >= pixelLocation.x &&
-		static_cast<float>(ofGetMouseY()) <= (pixelLocation.y + pixelSize.y) && static_cast<float>(ofGetMouseY()) >= pixelLocation.y) {
-		setFilled(true);
+	if (static_cast<float>(ofGetMouseX()) >= pixelLocation.x && 
+		static_cast<float>(ofGetMouseX()) <= (pixelLocation.x + pixelSize.x) &&
+		static_cast<float>(ofGetMouseY()) >= pixelLocation.y && 
+		static_cast<float>(ofGetMouseY()) <= (pixelLocation.y + pixelSize.y) ) {
+		SetState(1);
 	}
-	else setFilled(false);
+	else SetState(0);
 }

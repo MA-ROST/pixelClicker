@@ -25,6 +25,12 @@ class Grid
 {
 	bool m_isFilled = false;
 	bool m_inBounds = false;
+
+	enum stateColor {
+		inactive = 200,
+		hover = 220,
+		active = 0
+	};
 public:
 	Point<float> pixelSize;
 	Point<float> pixelLocation;
@@ -49,6 +55,8 @@ public:
 	 * @param isFilled A boolean to indicate weather the pixel is filled or not
 	 */
 	void setFilled(bool isFilled);
+
+	void SetState(int state);
 
 	void setPixelLocation(const int& x, const int& y);
 
