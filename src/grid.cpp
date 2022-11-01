@@ -10,18 +10,20 @@ void Grid::setupPixel(const int& x, const int& y)
 
 void Grid::setState () const
 {
-	if ( m_isClicked ) { setStyle (2); }
-	else if ( isInBounds() && !m_isClicked ) { setStyle (1); }
-	else { setStyle (0); }
+	if ( m_isClicked )						 setStyle (2);
+	else if ( isInBounds() && !m_isClicked ) setStyle (1);
+	else									 setStyle (0);
 }
 
-void Grid::setStyle (int state) const
+void Grid::setStyle (const int state) const
 {
 	ofFill();
 	switch ( state ) {
-		case 1: ofSetColor (hover);
+		case 1: 
+			ofSetColor (hover);
 			break;
-		case 2: ofSetColor (active);
+		case 2: 
+			ofSetColor (active);
 			break;
 		default: 
 			ofNoFill();
@@ -50,7 +52,8 @@ bool Grid::isInBounds () const
 	return static_cast<float>(ofGetMouseX()) >= pixelLocation.x && 
 	       static_cast<float>(ofGetMouseX()) <= pixelLocation.x + pixelSize.x &&
 	       static_cast<float>(ofGetMouseY()) >= pixelLocation.y && 
-	       static_cast<float>(ofGetMouseY()) <= pixelLocation.y + pixelSize.y ? true : false;
+	       static_cast<float>(ofGetMouseY()) <= pixelLocation.y + pixelSize.y
+		   ? true : false;
 }
 
 void Grid::clickEvent ()

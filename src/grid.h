@@ -34,7 +34,8 @@ class Grid
 	};
 
 public:
-	
+
+	//Set for grid size on load
 	static constexpr Point<int> gridSize{ 9,9 };
 
 	/**
